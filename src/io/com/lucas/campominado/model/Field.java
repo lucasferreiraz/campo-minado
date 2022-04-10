@@ -20,7 +20,25 @@ public class Field {
 	}
 	
 	boolean addNeighbor(Field neighbor) {
-		return true;
+		
+		boolean differentLine = this.line != neighbor.line;
+		boolean differentColumn = this.column != neighbor.column;
+		boolean diagonal = differentLine & differentColumn;
+		
+		int deltaLine = Math.abs(this.line - neighbor.line);
+		int deltaColumn = Math.abs(this.column - neighbor.column);
+		int deltaGeral = deltaColumn + deltaLine;
+		
+		if(deltaGeral == 1 & !diagonal) {
+			neighbors.add(neighbor);
+			return true;
+		} else if (deltaGeral == 2 & diagonal) {
+			neighbors.add(neighbor);
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 	
 }
